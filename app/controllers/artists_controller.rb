@@ -5,7 +5,6 @@ class ArtistsController < ApplicationController
   end
 
   def show
-    # byebug
     @artist = Artist.find(params[:id])
    
   end
@@ -17,8 +16,17 @@ class ArtistsController < ApplicationController
   def create 
     artist = Artist.create(artist_params)
     redirect_to artist_path(artist.id)
- end
+  end
 
+  def edit
+    @artist = Artist.find(params[:id])
+  end
+
+  def patch
+    @artist = Artist.find(params[:id])
+    @artist.update(artist_params)
+    redirect_to artist_path(@artist.id)
+  end
 
   private
 
